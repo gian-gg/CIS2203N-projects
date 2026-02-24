@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BmiCalcMaui.Components.BmiLevelsLegend">
+
+    <Border Style="{StaticResource ResultCard}">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="BMI Levels" FontAttributes="Bold" />
+            <Label Text="Quick guide for what each range means."
+                   Style="{StaticResource BrandSubtitle}" />
+
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="2" HeightRequest="16">
+                <BoxView Grid.Column="0" Color="#60A5FA" />
+                <BoxView Grid.Column="1" Color="#34D399" />
+                <BoxView Grid.Column="2" Color="#FBBF24" />
+                <BoxView Grid.Column="3" Color="#F87171" />
+            </Grid>
+
+            <Grid ColumnDefinitions="22,*,Auto" ColumnSpacing="10">
+                <BoxView Grid.Column="0" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" Color="#60A5FA" />
+                <Label Grid.Column="1" Text="Underweight" />
+                <Label Grid.Column="2" Text="Below 18.5" Style="{StaticResource BrandSubtitle}" />
+            </Grid>
+
+            <Grid ColumnDefinitions="22,*,Auto" ColumnSpacing="10">
+                <BoxView Grid.Column="0" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" Color="#34D399" />
+                <Label Grid.Column="1" Text="Healthy" />
+                <Label Grid.Column="2" Text="18.5 - 24.9" Style="{StaticResource BrandSubtitle}" />
+            </Grid>
+
+            <Grid ColumnDefinitions="22,*,Auto" ColumnSpacing="10">
+                <BoxView Grid.Column="0" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" Color="#FBBF24" />
+                <Label Grid.Column="1" Text="Overweight" />
+                <Label Grid.Column="2" Text="25.0 - 29.9" Style="{StaticResource BrandSubtitle}" />
+            </Grid>
+
+            <Grid ColumnDefinitions="22,*,Auto" ColumnSpacing="10">
+                <BoxView Grid.Column="0" HeightRequest="12" WidthRequest="12" VerticalOptions="Center" Color="#F87171" />
+                <Label Grid.Column="1" Text="Obese" />
+                <Label Grid.Column="2" Text="30.0 and above" Style="{StaticResource BrandSubtitle}" />
+            </Grid>
+        </VerticalStackLayout>
+    </Border>
+
+</ContentView>
