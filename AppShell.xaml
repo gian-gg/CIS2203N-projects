@@ -7,7 +7,7 @@
     Title="BmiCalcMaui">
 
     <ShellContent
-        Title="Home"
+        Title="BMI Calculator"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

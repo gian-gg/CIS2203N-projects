@@ -4,32 +4,56 @@
              x:Class="BmiCalcMaui.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a submarine number ten" />
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Picker x:Name="UnitPicker" Title="Select units">
+                <Picker.Items>
+                    <x:String>Metric (cm, kg)</x:String>
+                    <x:String>Imperial (in, lb)</x:String>
+                </Picker.Items>
+            </Picker>
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+            <Entry
+            x:Name="HeightEntry"
+            Placeholder="Height (cm)"
+            Keyboard="Numeric" />
 
-            <Label
-                Text="TIRA WIRA GIRA MIRA"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App UI" />
+            <Entry
+            x:Name="WeightEntry"
+            Placeholder="Weight (kg)"
+            Keyboard="Numeric" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+            Text="Calculate BMI" />
+
+        <Border
+        StrokeThickness="1"
+        StrokeShape="RoundRectangle 12"
+        Padding="16" >
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+                Text="Your Result"
+                FontSize="16"
+                FontAttributes="Bold" />
+
+                <Label
+                x:Name="BmiValueLabel"
+                Text="--"
+                FontSize="36"
+                FontAttributes="Bold" />
+
+                <Label
+                x:Name="BmiCategoryLabel"
+                Text="Enter values and tap Calculate"
+                FontSize="14" />
+
+                <Label
+                x:Name="BmiHintLabel"
+                Text="Healthy BMI range is about 18.5 to 24.9"
+                FontSize="12" />
+            </VerticalStackLayout>
+        </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 
