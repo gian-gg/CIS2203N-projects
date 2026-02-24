@@ -10,7 +10,7 @@
                    Style="{StaticResource BrandSubtitle}" />
 
             <Border Style="{StaticResource InputCard}">
-                <Picker x:Name="UnitPicker" Title="Select units">
+                <Picker x:Name="UnitPicker" Title="Select units" SelectedIndexChanged="OnUnitPickerChanged">
                     <Picker.Items>
                         <x:String>Metric (cm, kg)</x:String>
                         <x:String>Imperial (in, lb)</x:String>
@@ -27,8 +27,8 @@
             </Border>
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
-                <Button Grid.Column="0" Text="CALCULATE" Style="{StaticResource PrimaryButton}" />
-                <Button Grid.Column="1" Text="RESET" Style="{StaticResource GhostButton}" />
+                <Button Grid.Column="0" Text="CALCULATE" Style="{StaticResource PrimaryButton}" Clicked="OnCalculateClicked" />
+                <Button Grid.Column="1" Text="RESET" Style="{StaticResource GhostButton}" Clicked="OnResetClicked" />
             </Grid>
 
             <Border Style="{StaticResource ResultCard}">
