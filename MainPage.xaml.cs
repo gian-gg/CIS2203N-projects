@@ -1,4 +1,4 @@
-﻿namespace BmiCalcMaui;
+namespace BmiCalcMaui;
 
 public partial class MainPage : ContentPage
 {

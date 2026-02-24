@@ -4,11 +4,17 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BmiCalcMaui"
-    Title="BmiCalcMaui">
+    Title="BmiCalcMaui"
+    Shell.BackgroundColor="#161616"
+    Shell.TitleColor="#F2F2F2"
+    Shell.ForegroundColor="#F2F2F2">
 
     <ShellContent
         Title="BMI Calculator"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage"
+        Shell.BackgroundColor="#161616"
+        Shell.TitleColor="#F2F2F2"
+        Shell.ForegroundColor="#F2F2F2" />
 
 </Shell>

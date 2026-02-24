@@ -1,58 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BmiCalcMaui.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout Padding="30,0" Spacing="25">
-            <Picker x:Name="UnitPicker" Title="Select units">
-                <Picker.Items>
-                    <x:String>Metric (cm, kg)</x:String>
-                    <x:String>Imperial (in, lb)</x:String>
-                </Picker.Items>
-            </Picker>
+        <VerticalStackLayout Padding="24,32,24,24" Spacing="14">
+            <Label Text="Enter values and tap Calculate"
+                   Style="{StaticResource BrandSubtitle}" />
 
-            <Entry
-            x:Name="HeightEntry"
-            Placeholder="Height (cm)"
-            Keyboard="Numeric" />
+            <Border Style="{StaticResource InputCard}">
+                <Picker x:Name="UnitPicker" Title="Select units">
+                    <Picker.Items>
+                        <x:String>Metric (cm, kg)</x:String>
+                        <x:String>Imperial (in, lb)</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Border>
 
-            <Entry
-            x:Name="WeightEntry"
-            Placeholder="Weight (kg)"
-            Keyboard="Numeric" />
+            <Border Style="{StaticResource InputCard}">
+                <Entry x:Name="HeightEntry" Placeholder="Height (cm)" Keyboard="Numeric" />
+            </Border>
 
-            <Button
-            Text="Calculate BMI" />
+            <Border Style="{StaticResource InputCard}">
+                <Entry x:Name="WeightEntry" Placeholder="Weight (kg)" Keyboard="Numeric" />
+            </Border>
 
-        <Border
-        StrokeThickness="1"
-        StrokeShape="RoundRectangle 12"
-        Padding="16" >
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Grid.Column="0" Text="CALCULATE" Style="{StaticResource PrimaryButton}" />
+                <Button Grid.Column="1" Text="RESET" Style="{StaticResource GhostButton}" />
+            </Grid>
 
-            <VerticalStackLayout Spacing="8">
-                <Label
-                Text="Your Result"
-                FontSize="16"
-                FontAttributes="Bold" />
-
-                <Label
-                x:Name="BmiValueLabel"
-                Text="--"
-                FontSize="36"
-                FontAttributes="Bold" />
-
-                <Label
-                x:Name="BmiCategoryLabel"
-                Text="Enter values and tap Calculate"
-                FontSize="14" />
-
-                <Label
-                x:Name="BmiHintLabel"
-                Text="Healthy BMI range is about 18.5 to 24.9"
-                FontSize="12" />
-            </VerticalStackLayout>
-        </Border>
+            <Border Style="{StaticResource ResultCard}">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Result" Style="{StaticResource BrandSubtitle}" />
+                    <Label x:Name="BmiValueLabel" Text="--" FontSize="42" FontAttributes="Bold" />
+                    <Label x:Name="BmiHintLabel"
+                           Text="Healthy BMI range is about 18.5 to 24.9"
+                           Style="{StaticResource BrandSubtitle}" />
+                </VerticalStackLayout>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>
