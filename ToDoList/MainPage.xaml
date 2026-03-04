@@ -2,124 +2,144 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ToDoList.MainPage"
->
-    <ScrollView>
+    x:Class="ToDoList.MainPage">
+
+    <Grid
+        Padding="24,32,24,24"
+        RowDefinitions="Auto,Auto,Auto,*"
+        RowSpacing="14">
+
         <VerticalStackLayout
-            Spacing="10"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="Fill"
-        >
-            <VerticalStackLayout
-                Padding="10"
-                Spacing="10"
-                BackgroundColor="White"
-                Margin="0,0,0,10"
-            >
+            Grid.Row="0"
+            Spacing="4">
+            <Label
+                Text="Task Ledger"
+                Style="{StaticResource BrandTitle}" />
+            <Label
+                Text="A monochrome to do list."
+                Style="{StaticResource BrandSubtitle}" />
+        </VerticalStackLayout>
+
+        <Border
+            Grid.Row="1"
+            Style="{StaticResource InputCard}">
+            <VerticalStackLayout Spacing="10">
+                <Label
+                    Text="Capture"
+                    Style="{StaticResource SectionTitle}" />
                 <Entry
                     x:Name="titleEntry"
-                    Placeholder="Title"
-                    PlaceholderColor="Gray"
-                    TextColor="Black"
-                    Keyboard="Text"
+                    Placeholder="Task title"
                     ReturnType="Next"
-                    MaxLength="50"
-                />
+                    MaxLength="50" />
                 <Editor
                     x:Name="detailsEditor"
-                    Placeholder="Details"
-                    PlaceholderColor="Gray"
-                    TextColor="Black"
-                    MaxLength="240"
-                    Keyboard="Text"
-                    HeightRequest="100"
-                />
-                <Button
-                    x:Name="addBtn"
-                    IsVisible="True"
-                    Text="Add"
-                    TextColor="Black"
-                    BackgroundColor="LightBlue"
-                    Clicked="AddToDoItem"
-                />
-                <Button
-                    x:Name="editBtn"
-                    IsVisible="False"
-                    Text="Edit"
-                    TextColor="Black"
-                    BackgroundColor="lightgray"
-                    Clicked="EditToDoItem"
-                />
-                <Button
-                    x:Name="cancelBtn"
-                    IsVisible="False"
-                    Text="Cancel Edit"
-                    TextColor="Black"
-                    BackgroundColor="LightCoral"
-                    Clicked="CancelEdit"
-                />
+                    Placeholder="Notes, context, or next step"
+                    MaxLength="240" />
             </VerticalStackLayout>
+        </Border>
 
-            <ListView
-                x:Name="todoLV"
-                HorizontalOptions="Fill"
-                VerticalOptions="FillAndExpand"
-                HasUnevenRows="False"
-                SeparatorVisibility="Default"
-                BackgroundColor="White"
-                ItemSelected="TodoLV_OnItemSelected"
-                ItemTapped="todoLV_ItemTapped"
-            >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid
-                                VerticalOptions="FillAndExpand"
-                                RowSpacing="5"
-                                HorizontalOptions="FillAndExpand"
-                                Margin="10,0"
-                            >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="8*" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*,*,*"
+            ColumnSpacing="8">
+            <Button
+                x:Name="addBtn"
+                Grid.Column="0"
+                Text="ADD"
+                Style="{StaticResource PrimaryButton}"
+                Clicked="AddToDoItem" />
+            <Button
+                x:Name="editBtn"
+                Grid.Column="1"
+                IsVisible="False"
+                Text="SAVE"
+                Style="{StaticResource GhostButton}"
+                Clicked="EditToDoItem" />
+            <Button
+                x:Name="cancelBtn"
+                Grid.Column="2"
+                IsVisible="False"
+                Text="CANCEL"
+                Style="{StaticResource GhostButton}"
+                Clicked="CancelEdit" />
+        </Grid>
 
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    LineBreakMode="TailTruncation"
-                                    FontSize="16"
-                                    Text="{Binding title}"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                />
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    LineBreakMode="TailTruncation"
-                                    FontSize="14"
-                                    Text="{Binding detail}"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Start"
-                                />
-                                <Button
-                                    Text="Delete"
-                                    BackgroundColor="LightCoral"
-                                    ClassId="{Binding id}"
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    Clicked="DeleteToDoItem"
-                                />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
-    </ScrollView>
+        <Border
+            Grid.Row="3"
+            Style="{StaticResource ResultCard}"
+            Padding="0">
+            <Grid
+                RowDefinitions="Auto,*"
+                RowSpacing="0">
+                <VerticalStackLayout
+                    Padding="16,14,16,10"
+                    Spacing="2">
+                    <Label
+                        Text="Queue"
+                        Style="{StaticResource SectionTitle}" />
+                    <Label
+                        Text="Tap a row to load it into the editor."
+                        Style="{StaticResource BrandSubtitle}" />
+                </VerticalStackLayout>
+
+                <ListView
+                    x:Name="todoLV"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    SeparatorVisibility="None"
+                    ItemSelected="TodoLV_OnItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Border
+                                    Margin="12,0,12,12"
+                                    Style="{StaticResource InputCard}">
+                                    <Border.Triggers>
+                                        <DataTrigger
+                                            TargetType="Border"
+                                            Binding="{Binding isSelected}"
+                                            Value="True">
+                                            <Setter
+                                                Property="BackgroundColor"
+                                                Value="{StaticResource BrandSurfaceSelected}" />
+                                            <Setter
+                                                Property="Stroke"
+                                                Value="{StaticResource BrandStrokeSelected}" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <Grid
+                                        ColumnDefinitions="*,Auto"
+                                        ColumnSpacing="12"
+                                        RowDefinitions="Auto,Auto"
+                                        RowSpacing="6">
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Text="{Binding title}"
+                                            Style="{StaticResource TaskTitle}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Text="{Binding detail}"
+                                            Style="{StaticResource TaskBody}" />
+                                        <Button
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            ClassId="{Binding id}"
+                                            Text="DELETE"
+                                            VerticalOptions="Center"
+                                            Style="{StaticResource DangerButton}"
+                                            Clicked="DeleteToDoItem" />
+                                    </Grid>
+                                </Border>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Border>
+    </Grid>
 </ContentPage>
